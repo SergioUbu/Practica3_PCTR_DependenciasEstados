@@ -22,19 +22,12 @@ public class ActividadSalidaPuerta implements Runnable{
 				parque.salirDelParque(puerta);
 				TimeUnit.MILLISECONDS.sleep(new Random().nextInt(5)*1000);
 			} catch (InterruptedException e) {
-<<<<<<< HEAD
 				Logger.getGlobal().log(Level.INFO, "Salida interrumpida");
-=======
-				Logger.getGlobal().log(Level.INFO, "Salida  interrumpida");
->>>>>>> 8b74828a813e0f2727ab8fbc9d07e5c95fb9dea8
+
 				Logger.getGlobal().log(Level.INFO, e.toString());
 				return;
 			}
 		}
 	}
-<<<<<<< HEAD
-=======
 
-	
->>>>>>> 8b74828a813e0f2727ab8fbc9d07e5c95fb9dea8
 }
