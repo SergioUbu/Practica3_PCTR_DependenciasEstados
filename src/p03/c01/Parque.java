@@ -8,6 +8,13 @@ public class Parque implements IParque{
 	// TODO 
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
+	//Declaramos CONSTANTES con los valores de las personas que puede haber en el parque
+	private final static int AFOROMAXIMO=40;
+	private final static int AFROROMINIMO=0;
+	
+	//Variable con el valor del tiempo medio de estancia de las personas.
+	//private int tmedio
+	
 	
 	
 	public Parque() {	// TODO
@@ -20,13 +27,14 @@ public class Parque implements IParque{
 	@Override
 	public void entrarAlParque(String puerta){		// TODO
 		
+	
 		// Si no hay entradas por esa puerta, inicializamos
 		if (contadoresPersonasPuerta.get(puerta) == null){
 			contadoresPersonasPuerta.put(puerta, 0);
 		}
 		
 		// TODO
-				
+		if(this.contadoresPersonasPuerta.get(puerta)< AFOROMAXIMO)		
 		
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales++;		
