@@ -91,11 +91,9 @@ public class Parque implements IParque{
 	private void imprimirInfo (String puerta, String movimiento){	
 		//Imprimimos el movimiento y las personas que hay en el parque
 		System.out.println(movimiento + " por puerta " + puerta);
-		if (movimiento.equals("Entrada"))
-			System.out.println("--> Personas en el parque " + contadorPersonasTotales);
-		if(movimiento.equals("Salida"))
-			System.out.println("--> Personas en el parque " + contadorPersonasTotales + " tiempo medio de estancia: "  + obtenertimingDeMedia());		
-		
+		String texto="--> Personas en el parque " + contadorPersonasTotales;
+		if(movimiento.equals("Salida")) texto+= " Tiempo de estancia media: "  + obtenertimingDeMedia();		
+		System.out.println(texto);
 		// Iteramos por todas las puertas e imprimimos sus entradas
 		for(String p: contadoresPersonasPuerta.keySet()){
 			System.out.println("----> Por puerta " + p + " " + contadoresPersonasPuerta.get(p));
@@ -144,7 +142,10 @@ public class Parque implements IParque{
 	
 	private double obtenertimingDeMedia() {
 		//Procedemos a calcular el tiempo medio que está en el parque.
-		return (timingDeMedia + (timingAlSalir - timingAlEntrar))/2.0; 	
+		
+		timingDeMedia=((timingDeMedia + (timingAlSalir - timingAlEntrar))/2.0); 
+		timingAlEntrar=timingAlSalir;
+		return timingDeMedia;
 	}
 
 }
