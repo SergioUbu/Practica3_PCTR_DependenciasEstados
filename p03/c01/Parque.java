@@ -5,7 +5,6 @@ import java.util.Hashtable;
 
 public class Parque implements IParque{
 
-	// TODO 
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	//Declaramos CONSTANTES con los valores de las personas que puede haber en el parque
@@ -13,10 +12,8 @@ public class Parque implements IParque{
 	private final static int AFOROMINIMO=0;
 	
 	//Variable con el valor del tiempo medio de estancia de las personas.
-	//private int tmedio
-	
-	
-	
+	private int tmedio;
+		
 	public Parque() {	// TODO
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
@@ -25,28 +22,26 @@ public class Parque implements IParque{
 
 
 	@Override
-	public void entrarAlParque(String puerta){		// TODO
-		
-	
+	public void entrarAlParque(String puerta) {
+		//Si tenemos el aforo máximo, no dejamos entrar a ninguna persona, durmiendo los hilos.
+		comprobarAntesDeEntrar();
 		// Si no hay entradas por esa puerta, inicializamos
-		if (contadoresPersonasPuerta.get(puerta) == null){
-			contadoresPersonasPuerta.put(puerta, 0);
-		}
+		if (contadoresPersonasPuerta.get(puerta) == null){contadoresPersonasPuerta.put(puerta, 0);}
 		
-		// TODO
+		//TODO calculamos el tiempo
 		if(this.contadoresPersonasPuerta.get(puerta)< AFOROMAXIMO)		
 		
-		// Aumentamos el contador total y el individual
+		// Aumentamos el contador total y el individual de personas por puerta
 		contadorPersonasTotales++;		
 		contadoresPersonasPuerta.put(puerta, contadoresPersonasPuerta.get(puerta)+1);
 		
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Entrada");
 		
-		// TODO
-		
-		
-		// TODO
+		//Comprobación del invariante.
+		checkInvariante();
+		//Avisamos al resto de hilos para que despierten.
+		notifyAll();
 		
 	}
 	
@@ -54,9 +49,6 @@ public class Parque implements IParque{
 	public void salirDelParque(String puerta) {
 		
 	}
-	
-
-	
 	
 	private void imprimirInfo (String puerta, String movimiento){
 		System.out.println(movimiento + " por puerta " + puerta);
@@ -105,8 +97,5 @@ public class Parque implements IParque{
 			
 		}
 	}
-		
-	
-
 
 }
