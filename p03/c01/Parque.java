@@ -50,6 +50,11 @@ public class Parque implements IParque{
 		
 	}
 	
+	@Override
+	public void salirDelParque(String puerta) {
+		
+	}
+	
 	// 
 	// TODO Método salirDelParque
 	//
