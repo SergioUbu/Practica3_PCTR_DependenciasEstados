@@ -10,7 +10,7 @@ public class Parque implements IParque{
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	//Declaramos CONSTANTES con los valores de las personas que puede haber en el parque
 	private final static int AFOROMAXIMO=40;
-	private final static int AFROROMINIMO=0;
+	private final static int AFOROMINIMO=0;
 	
 	//Variable con el valor del tiempo medio de estancia de las personas.
 	//private int tmedio
@@ -55,9 +55,7 @@ public class Parque implements IParque{
 		
 	}
 	
-	// 
-	// TODO Método salirDelParque
-	//
+
 	
 	
 	private void imprimirInfo (String puerta, String movimiento){
@@ -86,17 +84,29 @@ public class Parque implements IParque{
 		// TODO
 	}
 
-	protected void comprobarAntesDeEntrar(){	// TODO
-		//
-		// TODO
-		//
+	protected synchronized void comprobarAntesDeEntrar(){	
+		while(this.contadorPersonasTotales==Parque.AFOROMAXIMO) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}
 	}
 
-	protected void comprobarAntesDeSalir(){		// TODO
-		//
-		// TODO
-		//
+	protected synchronized void comprobarAntesDeSalir(){	
+		while(this.contadorPersonasTotales==Parque.AFOROMINIMO) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}
 	}
+		
+	
 
 
 }
