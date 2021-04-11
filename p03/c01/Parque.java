@@ -31,7 +31,7 @@ public class Parque implements IParque{
 		if (contadoresPersonasPuertaEntrada.get(puerta) == null){contadoresPersonasPuertaEntrada.put(puerta, 0);}
 		
 		//TODO calculamos el tiempo
-		if(this.contadoresPersonasPuertaEntrada.get(puerta)< AFOROMAXIMO)		
+		//if(this.contadoresPersonasPuertaEntrada.get(puerta)< AFOROMAXIMO)		
 		
 		// Aumentamos el contador total y el individual de personas por puerta
 		contadorPersonasTotales++;		
