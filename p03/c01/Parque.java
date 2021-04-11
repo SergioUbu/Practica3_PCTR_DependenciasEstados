@@ -8,7 +8,7 @@ public class Parque implements IParque{
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	//Declaramos CONSTANTES con los valores de las personas que puede haber en el parque
-	private final static int AFOROMAXIMO=40;
+	private final static int AFOROMAXIMO=20;
 	private final static int AFOROMINIMO=0;
 	
 	//Variable con el valor del tiempo medio de estancia de las personas.
@@ -20,7 +20,6 @@ public class Parque implements IParque{
 		// TODO
 	}
 
-
 	@Override
 	public void entrarAlParque(String puerta) {
 		//Si tenemos el aforo máximo, no dejamos entrar a ninguna persona, durmiendo los hilos.
@@ -29,19 +28,19 @@ public class Parque implements IParque{
 		if (contadoresPersonasPuerta.get(puerta) == null){contadoresPersonasPuerta.put(puerta, 0);}
 		
 		//TODO calculamos el tiempo
-		if(this.contadoresPersonasPuerta.get(puerta)< AFOROMAXIMO)		
 		
-		// Aumentamos el contador total y el individual de personas por puerta
-		contadorPersonasTotales++;		
-		contadoresPersonasPuerta.put(puerta, contadoresPersonasPuerta.get(puerta)+1);
-		
-		// Imprimimos el estado del parque
-		imprimirInfo(puerta, "Entrada");
-		
-		//Comprobación del invariante.
-		checkInvariante();
-		//Avisamos al resto de hilos para que despierten.
-		notifyAll();
+		//if(this.contadoresPersonasPuerta.get(puerta)< AFOROMAXIMO)		
+			// Aumentamos el contador total y el individual de personas por puerta
+			contadorPersonasTotales++;		
+			contadoresPersonasPuerta.put(puerta, contadoresPersonasPuerta.get(puerta)+1);
+			
+			// Imprimimos el estado del parque
+			imprimirInfo(puerta, "Entrada");
+			
+			//Comprobación del invariante.
+			checkInvariante();
+			//Avisamos al resto de hilos para que despierten.
+			notifyAll();
 		
 	}
 	
@@ -82,8 +81,7 @@ public class Parque implements IParque{
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			}
-			
+			}			
 		}
 	}
 
@@ -93,8 +91,7 @@ public class Parque implements IParque{
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			}
-			
+			}	
 		}
 	}
 
